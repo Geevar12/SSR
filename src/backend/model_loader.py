@@ -1,10 +1,15 @@
+import os
 import torch
 from .cnn_lstm_ctc import LipReadingCTC, TextTokenizer
 from .video_preprocess import preprocess_video
 from .beam_search_decoder import ctc_beam_search
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-MODEL_PATH = "models/lipreader_s1_s10.pth"
+
+# Absolute path to model file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "lipreader_s1_s10.pth")
+
 
 # -------------------- LOAD MODEL --------------------
 def load_model():
@@ -21,15 +26,15 @@ def load_model():
 
     return model, tokenizer
 
+
 # -------------------- INFERENCE --------------------
 def infer_video(video_path, model, tokenizer, beam_width=10):
-    frames = preprocess_video(video_path)  # (T, 3, 64,64)
-    frames = frames.unsqueeze(0).to(DEVICE)  # (1,T,C,H,W)
+    frames = preprocess_video(video_path)
+    frames = frames.unsqueeze(0).to(DEVICE)
 
     with torch.no_grad():
-        log_probs = model(frames)  # (T,1,V)
-        log_probs = log_probs.squeeze(1)  # (T,V)
+        log_probs = model(frames)
+        log_probs = log_probs.squeeze(1)
 
-    # ---- USE BEAM SEARCH ----
     prediction = ctc_beam_search(log_probs.cpu(), beam_width, tokenizer)
     return prediction
