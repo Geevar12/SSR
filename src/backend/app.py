@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from model_loader import load_model, infer_video
+from .model_loader import load_model, infer_video
 
 app = Flask(__name__)
 CORS(app)
