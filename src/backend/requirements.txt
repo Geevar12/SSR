@@ -1,9 +1,11 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 flask
 flask-cors
 gunicorn
-torch
-torchvision
-pillow
-opencv-python
 numpy
+opencv-python
+pillow
 mediapipe==0.10.9
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
