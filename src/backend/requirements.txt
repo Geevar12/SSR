@@ -3,7 +3,7 @@
 flask
 flask-cors
 gunicorn
-numpy
+numpy==1.26.4
 opencv-python
 pillow
 mediapipe==0.10.9
