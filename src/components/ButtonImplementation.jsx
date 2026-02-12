@@ -22,7 +22,7 @@ const ButtonImplementation = () => {
       const formData = new FormData()
       formData.append('video', selectedFile)
 
-      const resp = await fetch('http://localhost:10000/predict', {
+      const resp = await fetch('/predict', {
         method: 'POST',
         body: formData,
       })
