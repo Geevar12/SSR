@@ -1,7 +1,7 @@
 import torch
-from cnn_lstm_ctc import LipReadingCTC, TextTokenizer
-from video_preprocess import preprocess_video
-from beam_search_decoder import ctc_beam_search
+from .cnn_lstm_ctc import LipReadingCTC, TextTokenizer
+from .video_preprocess import preprocess_video
+from .beam_search_decoder import ctc_beam_search
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 MODEL_PATH = "models/lipreader_s1_s10.pth"
