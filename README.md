@@ -21,7 +21,6 @@ Silent Speech Recognition (SSR) is a cutting-edge system designed to empower ind
 - **Git & GitHub** for version control
 - **VS Code** as the development environment
 
-## 📁 Project Structure
 
 
 ## 🔧 Setup Instructions
